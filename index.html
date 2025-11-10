@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵性运势解读 - 生辰八字与塔罗牌智慧融合</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #8B5CF6;
+            --primary-gold: #F59E0B;
+            --secondary-purple: #A78BFA;
+            --light-purple: #C4B5FD;
+            --dark-purple: #6D28D9;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --bg-light: #FAF5FF;
+            --bg-white: #FFFFFF;
+            --border-color: #E5E7EB;
+            --success-color: #10B981;
+            --warning-color: #F59E0B;
+            --danger-color: #EF4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #F3E8FF 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 600;
+            color: var(--dark-purple);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="1" fill="white" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+        
+        /* 步骤指示器 */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--light-purple);
+            color: var(--dark-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active .step-number {
+            background: var(--primary-purple);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .step.completed .step-number {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+        
+        .step.active .step-label {
+            color: var(--primary-purple);
+            font-weight: 500;
+        }
+        
+        .step-indicator::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25%;
+            right: 25%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+        
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: var(--primary-purple);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--dark-purple);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: var(--light-purple);
+            color: var(--dark-purple);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary-purple);
+        }
+        
+        .btn-large {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 塔罗牌样式 */
+        .tarot-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .tarot-card {
+            perspective: 1000px;
+            height: 300px;
+        }
+        
+        .tarot-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        
+        .tarot-card.flipped .tarot-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .tarot-card-front,
+        .tarot-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .tarot-card-front {
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-purple) 100%);
+            color: white;
+        }
+        
+        .tarot-card-back {
+            background: white;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        .tarot-card-back.upright {
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .tarot-card-back.reversed {
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .tarot-card-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tarot-card-orientation {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+        
+        .tarot-card-meaning {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* 运势报告样式 */
+        .fortune-section {
+            margin: 2rem 0;
+        }
+        
+        .fortune-category {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary-purple);
+        }
+        
+        .fortune-category h4 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .fortune-category h4 i {
+            margin-right: 0.5rem;
+            color: var(--primary-purple);
+        }
+        
+        .fortune-analysis {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .fortune-suggestion {
+            background: rgba(245, 158, 11, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-gold);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tarot-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-indicator {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .step-indicator::before {
+                display: none;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* 隐藏/显示控制 */
+        .step-content {
+            display: none;
+        }
+        
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* 加载动画 */
+        .loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-purple);
+            border-left: 4px solid var(--primary-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* 工具提示 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* 复选框组样式 */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .checkbox-label:hover {
+            background: var(--primary-purple-light);
+            transform: translateY(-2px);
+        }
+        
+        .checkbox-label input:checked + i {
+            color: var(--primary-purple);
+        }
+        
+        .checkbox-label input:checked ~ span {
+            font-weight: 600;
+        }
+        
+        .checkbox-label input {
+            margin-right: 0.75rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-purple);
+        }
+        
+        .checkbox-label i {
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .checkbox-label span {
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <div class="container">
+            <h1><i class="fas fa-crystal-ball"></i> 灵性运势解读</h1>
+            <p>融合生辰五行、星座特质与塔罗牌能量的智慧指引</p>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="container">
+        <!-- 步骤指示器 -->
+        <div class="step-indicator">
+            <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">个人信息</div>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">塔罗抽牌</div>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">运势报告</div>
+            </div>
+        </div>
+
+        <!-- 步骤1：个人信息收集 -->
+        <section id="step1" class="step-content active">
+            <div class="card">
+                <h2><i class="fas fa-user-circle"></i> 个人信息收集</h2>
+                <p class="text-light" style="margin-bottom: 2rem;">为提升解读精准度，请提供您的出生信息</p>
+                
+                <form id="userInfoForm">
+                    <div class="form-group">
+                        <label class="form-label" for="birthDate">
+                            <i class="fas fa-calendar-alt"></i> 出生日期
+                            <span class="tooltip">
+                                <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                                <span class="tooltip-text">请选择您的公历出生年月日，系统将自动计算星座</span>
+                            </span>
+                        </label>
+                        <input type="date" id="birthDate" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                    <label class="form-label" for="birthTime">
+                        <i class="fas fa-clock"></i> 出生时间（可选）
+                        <span class="tooltip">
+                            <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                            <span class="tooltip-text">提供出生时辰可增强五行分析的精准度</span>
+                        </span>
+                    </label>
+                    <input type="time" id="birthTime" class="form-input">
+                    <small style="color: var(--text-light); margin-top: 0.5rem; display: block;">
+                        若无法提供具体时辰，系统将基于年月日进行基础分析
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="focusAreas">
+                        <i class="fas fa-bullseye"></i> 重点关注方面
+                        <span class="tooltip">
+                            <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                            <span class="tooltip-text">选择您最关心的运势方面，系统将为您生成针对性分析</span>
+                        </span>
+                    </label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="love" checked>
+                            <i class="fas fa-heart"></i> 爱情运势
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="career" checked>
+                            <i class="fas fa-briefcase"></i> 事业运势
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="health" checked>
+                            <i class="fas fa-heartbeat"></i> 健康运势
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="wealth" checked>
+                            <i class="fas fa-coins"></i> 财运运势
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="study">
+                            <i class="fas fa-graduation-cap"></i> 学业运势
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="focusAreas" value="family">
+                            <i class="fas fa-home"></i> 家庭运势
+                        </label>
+                    </div>
+                    <small style="color: var(--text-light); margin-top: 0.5rem; display: block;">
+                        选择您最关心的运势方面，系统将为您生成针对性分析
+                    </small>
+                </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="zodiac">
+                            <i class="fas fa-star"></i> 星座确认
+                            <span class="tooltip">
+                                <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                                <span class="tooltip-text">系统将根据出生日期自动计算星座，您可手动调整</span>
+                            </span>
+                        </label>
+                        <select id="zodiac" class="form-input form-select" required>
+                            <option value="">请选择星座</option>
+                            <option value="aries">白羊座 (3月21日-4月19日)</option>
+                            <option value="taurus">金牛座 (4月20日-5月20日)</option>
+                            <option value="gemini">双子座 (5月21日-6月21日)</option>
+                            <option value="cancer">巨蟹座 (6月22日-7月22日)</option>
+                            <option value="leo">狮子座 (7月23日-8月22日)</option>
+                            <option value="virgo">处女座 (8月23日-9月22日)</option>
+                            <option value="libra">天秤座 (9月23日-10月23日)</option>
+                            <option value="scorpio">天蝎座 (10月24日-11月22日)</option>
+                            <option value="sagittarius">射手座 (11月23日-12月21日)</option>
+                            <option value="capricorn">摩羯座 (12月22日-1月19日)</option>
+                            <option value="aquarius">水瓶座 (1月20日-2月18日)</option>
+                            <option value="pisces">双鱼座 (2月19日-3月20日)</option>
+                        </select>
+                        <small id="zodiacHint" style="color: var(--text-light); margin-top: 0.5rem; display: block;"></small>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-arrow-right"></i> 开始塔罗抽牌
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- 步骤2：塔罗抽牌 -->
+        <section id="step2" class="step-content">
+            <div class="card">
+                <h2><i class="fas fa-cards"></i> 塔罗牌能量指引</h2>
+                <p class="text-light" style="margin-bottom: 2rem;">请输入1-78之间的3个数字来抽取塔罗牌，每个数字对应一张特定的牌</p>
+                
+                <!-- 数字输入表单 -->
+                <div class="number-input-form" style="margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="cardNumber1">
+                            <i class="fas fa-1"></i> 第一张牌数字（整体能量基调）
+                            <span class="tooltip">
+                                <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                                <span class="tooltip-text">请输入1-78之间的数字，对应塔罗牌库中的特定牌</span>
+                            </span>
+                        </label>
+                        <input type="number" id="cardNumber1" class="form-input" min="1" max="78" placeholder="输入1-78的数字">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="cardNumber2">
+                            <i class="fas fa-2"></i> 第二张牌数字（核心课题）
+                            <span class="tooltip">
+                                <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                                <span class="tooltip-text">请输入1-78之间的数字，对应塔罗牌库中的特定牌</span>
+                            </span>
+                        </label>
+                        <input type="number" id="cardNumber2" class="form-input" min="1" max="78" placeholder="输入1-78的数字">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="cardNumber3">
+                            <i class="fas fa-3"></i> 第三张牌数字（行动指引）
+                            <span class="tooltip">
+                                <i class="fas fa-question-circle" style="margin-left: 0.5rem;"></i>
+                                <span class="tooltip-text">请输入1-78之间的数字，对应塔罗牌库中的特定牌</span>
+                            </span>
+                        </label>
+                        <input type="number" id="cardNumber3" class="form-input" min="1" max="78" placeholder="输入1-78的数字">
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <button id="drawCardsBtn" class="btn btn-primary">
+                            <i class="fas fa-magic"></i> 抽取塔罗牌
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 牌面显示区域 -->
+                <div class="tarot-cards">
+                    <!-- 牌1：整体能量基调 -->
+                    <div class="tarot-card" data-card-index="0">
+                        <div class="tarot-card-inner">
+                            <div class="tarot-card-front">
+                                <i class="fas fa-question" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3>整体能量基调</h3>
+                                <p>等待抽牌</p>
+                            </div>
+                            <div class="tarot-card-back">
+                                <!-- 牌面内容将由JavaScript动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 牌2：核心课题 -->
+                    <div class="tarot-card" data-card-index="1">
+                        <div class="tarot-card-inner">
+                            <div class="tarot-card-front">
+                                <i class="fas fa-question" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3>核心课题</h3>
+                                <p>等待抽牌</p>
+                            </div>
+                            <div class="tarot-card-back">
+                                <!-- 牌面内容将由JavaScript动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 牌3：行动指引 -->
+                    <div class="tarot-card" data-card-index="2">
+                        <div class="tarot-card-inner">
+                            <div class="tarot-card-front">
+                                <i class="fas fa-question" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3>行动指引</h3>
+                                <p>等待抽牌</p>
+                            </div>
+                            <div class="tarot-card-back">
+                                <!-- 牌面内容将由JavaScript动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button id="generateReportBtn" class="btn btn-primary" disabled>
+                        <i class="fas fa-file-alt"></i> 生成运势报告
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 步骤3：运势报告 -->
+        <section id="step3" class="step-content">
+            <div class="card">
+                <h2><i class="fas fa-chart-line"></i> 综合运势报告</h2>
+                <p class="text-light" style="margin-bottom: 2rem;">基于您的个人信息和塔罗牌能量生成的近期运势分析</p>
+                
+                <div id="fortuneReport">
+                    <!-- 运势报告内容将由JavaScript动态生成 -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button id="restartBtn" class="btn btn-primary">
+                        <i class="fas fa-sync"></i> 重新开始
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer style="background: var(--dark-purple); color: white; padding: 2rem 0; margin-top: 3rem;">
+        <div class="container" style="text-align: center;">
+            <p>运势为概率性指引，旨在提供心灵滋养与正向思考，非必然结果</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">愿您保持开放心态，在了解运势的同时获得心灵成长</p>
+        </div>
+    </footer>
+
+    <script>
+        // 完整的塔罗牌数据库（1-78张牌）
+        const tarotDeck = {
+            // 大阿卡那牌（1-22）
+            majorArcana: [
+                { number: 0, name: "愚人", upright: "新的开始、冒险精神、自由探索", reversed: "鲁莽、逃避责任、缺乏规划", 
+                  advice: "保持开放心态，但需注意安全边界；尝试新事物时做好充分准备" },
+                { number: 1, name: "魔术师", upright: "创造力、沟通能力、资源整合", reversed: "欺骗、资源浪费、沟通障碍", 
+                  advice: "善用你的技能和资源，但需保持诚信；加强与他人的有效沟通" },
+                { number: 2, name: "女祭司", upright: "直觉、内在智慧、神秘洞察", reversed: "隐藏真相、情绪压抑、直觉混乱", 
+                  advice: "相信你的直觉，但需与现实结合；适当表达内心感受" },
+                { number: 3, name: "皇后", upright: "丰盛、母性关怀、创造力", reversed: "依赖、过度保护、创造力受阻", 
+                  advice: "培养丰盛心态，但避免过度控制；在关爱他人的同时保持自我" },
+                { number: 4, name: "皇帝", upright: "权威、稳定性、领导力", reversed: "控制欲、僵化、缺乏灵活性", 
+                  advice: "展现领导力，但需保持开放；在稳定中寻求创新和变革" },
+                { number: 5, name: "教皇", upright: "传统、精神指引、道德规范", reversed: "教条主义、反叛、信仰危机", 
+                  advice: "尊重传统智慧，但需独立思考；在规范中寻找个人成长空间" },
+                { number: 6, name: "恋人", upright: "选择、和谐关系、真爱", reversed: "冲突、错误选择、关系紧张", 
+                  advice: "认真考虑重要选择，沟通是关键；在关系中保持平衡和尊重" },
+                { number: 7, name: "战车", upright: "意志力、前进、胜利", reversed: "失去方向、冲突、意志消沉", 
+                  advice: "保持坚定目标，但需灵活调整；在前进中注意平衡各方力量" },
+                { number: 8, name: "力量", upright: "勇气、内在力量、温和控制", reversed: "自我怀疑、无力感、情绪失控", 
+                  advice: "发挥内在勇气，用温和方式处理挑战；培养耐心和自控力" },
+                { number: 9, name: "隐士", upright: "内省、智慧寻求、孤独探索", reversed: "孤独、逃避现实、过度内省", 
+                  advice: "适当独处反思，但需保持社交联系；在静思中寻找实践智慧" },
+                { number: 10, name: "命运之轮", upright: "转变、命运转折、机遇", reversed: "抗拒改变、坏运气、循环困境", 
+                  advice: "顺应变化，抓住机遇；在逆境中保持积极心态" },
+                { number: 11, name: "正义", upright: "平衡、公平、因果报应", reversed: "不公正、偏见、责任逃避", 
+                  advice: "追求公平正义，但需考虑实际情况；对自己的选择承担责任" },
+                { number: 12, name: "倒吊人", upright: "牺牲、新视角、等待", reversed: "停滞、无谓牺牲、抗拒改变", 
+                  advice: "换个角度看问题，牺牲可能带来成长；在等待中保持耐心" },
+                { number: 13, name: "死神", upright: "结束、转变、重生", reversed: "抗拒改变、停滞、恐惧结束", 
+                  advice: "接受必要的结束，为新开始做准备；转变是成长的必经之路" },
+                { number: 14, name: "节制", upright: "平衡、调和、适度", reversed: "极端、不平衡、过度放纵", 
+                  advice: "寻找生活中的平衡点；在极端之间找到和谐之道" },
+                { number: 15, name: "恶魔", upright: "束缚、物质欲望、沉迷", reversed: "解脱、自我控制、意识觉醒", 
+                  advice: "认识并控制物质欲望；摆脱不必要的束缚，追求真正的自由" },
+                { number: 16, name: "塔", upright: "突然改变、启示、突破", reversed: "避免灾难、压抑改变、抗拒真相", 
+                  advice: "接受必要的破坏性改变；在危机中寻找成长机会" },
+                { number: 17, name: "星星", upright: "希望、灵感、精神指引", reversed: "失望、失去信心、希望渺茫", 
+                  advice: "保持希望和信念；在黑暗中寻找星光，相信内在的指引" },
+                { number: 18, name: "月亮", upright: "潜意识、直觉、梦境", reversed: "困惑、欺骗、情绪波动", 
+                  advice: "关注潜意识信息，但需理性分析；在模糊中寻找清晰方向" },
+                { number: 19, name: "太阳", upright: "成功、活力、快乐", reversed: "暂时挫折、过度乐观、能量不足", 
+                  advice: "享受成功时刻，但保持谦逊；在阳光中分享快乐和正能量" },
+                { number: 20, name: "审判", upright: "觉醒、重生、自我评估", reversed: "自我怀疑、害怕改变、拒绝觉醒", 
+                  advice: "接受内在的召唤，勇于改变；在审判中寻找新的开始" },
+                { number: 21, name: "世界", upright: "完成、成就、圆满", reversed: "未完成、延迟、循环未结束", 
+                  advice: "庆祝成就，准备新的循环；在圆满中保持学习和成长" }
+            ],
+            // 小阿卡那牌（23-78）
+            minorArcana: {
+                wands: [
+                    { number: 23, name: "权杖王牌", upright: "新开始、创造力、热情", reversed: "延迟、错失机会、热情消退", 
+                      advice: "抓住新机会，但需持续投入；保持创造力的同时注意实际执行" },
+                    { number: 24, name: "权杖二", upright: "规划、未来展望、决策", reversed: "恐惧改变、优柔寡断、缺乏远见", 
+                      advice: "认真规划未来，勇敢做出选择；在决策中考虑长远影响" },
+                    { number: 25, name: "权杖三", upright: "合作、扩张、远见", reversed: "延迟、缺乏远见、合作困难", 
+                      advice: "寻求合作机会，拓展视野；在扩张中保持团队协作" },
+                    { number: 26, name: "权杖四", upright: "稳定、庆祝、家庭和谐", reversed: "不稳定、庆祝延迟、家庭冲突", 
+                      advice: "巩固现有成果，享受稳定时刻；在和谐中继续建设" },
+                    { number: 27, name: "权杖五", upright: "竞争、挑战、冲突", reversed: "避免冲突、内部斗争、能量分散", 
+                      advice: "健康竞争促进成长，但需保持公平；在冲突中寻找建设性解决方案" },
+                    { number: 28, name: "权杖六", upright: "胜利、认可、进步", reversed: "延迟认可、挫折、缺乏支持", 
+                      advice: "庆祝小胜利，继续前进；在认可中保持谦逊和努力" },
+                    { number: 29, name: "权杖七", upright: "坚持、防御、勇气", reversed: "放弃、防御失败、勇气不足", 
+                      advice: "坚持立场，勇敢面对挑战；在防御中寻找主动出击的机会" },
+                    { number: 30, name: "权杖八", upright: "快速行动、消息、进展", reversed: "延迟、沟通问题、进展缓慢", 
+                      advice: "抓住时机快速行动，注意沟通效率；在快速变化中保持方向" },
+                    { number: 31, name: "权杖九", upright: "坚持、经验、警惕", reversed: "固执、过度防御、经验误用", 
+                      advice: "运用经验智慧，但保持开放；在警惕中不要错过新机会" },
+                    { number: 32, name: "权杖十", upright: "责任、负担、坚持", reversed: "负担过重、逃避责任、能量耗尽", 
+                      advice: "合理分配责任，避免过度承担；在坚持中寻找支持和帮助" }
+                ],
+                cups: [
+                    { number: 33, name: "圣杯王牌", upright: "新情感、直觉、爱", reversed: "情感空虚、拒绝爱、直觉混乱", 
+                      advice: "开放心扉接受新情感，相信直觉；在爱中保持自我完整性" },
+                    { number: 34, name: "圣杯二", upright: "和谐关系、合作、平等", reversed: "不平衡、冲突、合作困难", 
+                      advice: "培养平等和谐的关系，真诚合作；在关系中保持相互尊重" },
+                    { number: 35, name: "圣杯三", upright: "庆祝、友谊、欢乐", reversed: "过度享乐、孤立、友谊问题", 
+                      advice: "享受社交欢乐，但需适度；在庆祝中珍惜真正的友谊" },
+                    { number: 36, name: "圣杯四", upright: "沉思、不满意、新机会", reversed: "拒绝机会、过度沉思、不满加剧", 
+                      advice: "认真评估现状，对新机会保持开放；在沉思中寻找行动方向" },
+                    { number: 37, name: "圣杯五", upright: "失落、悲伤、聚焦负面", reversed: "接受失落、寻找希望、情绪恢复", 
+                      advice: "允许自己感受悲伤，但不要沉溺；在失落中寻找新的希望" },
+                    { number: 38, name: "圣杯六", upright: " nostalgia、童年、安全", reversed: "活在過去、逃避现实、安全感缺失", 
+                      advice: "珍惜美好回忆，但活在当下；在安全感中培养独立成长" },
+                    { number: 39, name: "圣杯七", upright: "选择、幻想、欲望", reversed: "决策困难、现实逃避、欲望混乱", 
+                      advice: "明确真实需求，做出实际选择；在幻想中保持现实基础" },
+                    { number: 40, name: "圣杯八", upright: "离开、追寻、放弃", reversed: "恐惧离开、停滞、不愿放弃", 
+                      advice: "勇敢追寻更高目标，适时放弃；在离开中寻找新的意义" },
+                    { number: 41, name: "圣杯九", upright: "愿望实现、满足、快乐", reversed: "愿望未实现、不满、过度自我", 
+                      advice: "享受愿望实现的喜悦，分享快乐；在满足中保持感恩心态" },
+                    { number: 42, name: "圣杯十", upright: "家庭幸福、和谐、圆满", reversed: "家庭冲突、不和谐、幸福延迟", 
+                      advice: "珍惜家庭和谐，共同创造幸福；在圆满中继续建设美好生活" }
+                ],
+                swords: [
+                    { number: 43, name: "宝剑王牌", upright: "新想法、突破、清晰", reversed: "混乱想法、沟通问题、决策困难", 
+                      advice: "清晰表达想法，勇敢突破；在创新中保持逻辑和理性" },
+                    { number: 44, name: "宝剑二", upright: "僵局、逃避、平衡", reversed: "艰难决定、直面现实、打破僵局", 
+                      advice: "面对困难决定，打破平衡僵局；在逃避中寻找勇气面对" },
+                    { number: 45, name: "宝剑三", upright: "心痛、悲伤、分离", reversed: "疗愈、接受现实、情绪恢复", 
+                      advice: "允许自己感受痛苦，寻求疗愈；在悲伤中寻找成长机会" },
+                    { number: 46, name: "宝剑四", upright: "休息、恢复、沉思", reversed: "过度休息、逃避、恢复延迟", 
+                      advice: "适当休息恢复能量，但不要过度；在沉思中准备重新出发" },
+                    { number: 47, name: "宝剑五", upright: "冲突、胜利、代价", reversed: "无意义冲突、 Pyrrhic victory、后悔", 
+                      advice: "避免无意义冲突，考虑胜利代价；在竞争中保持道德底线" },
+                    { number: 48, name: "宝剑六", upright: "过渡、疗愈、前进", reversed: "停滞、疗愈延迟、不愿前进", 
+                      advice: "接受过渡期，慢慢疗愈前进；在前进中带着希望和勇气" },
+                    { number: 49, name: "宝剑七", upright: "策略、欺骗、独自行动", reversed: "策略失败、真相暴露、合作必要", 
+                      advice: "谨慎使用策略，保持诚信；在独自行动中考虑合作可能" },
+                    { number: 50, name: "宝剑八", upright: "限制、束缚、自我设限", reversed: "解脱、自由、突破限制", 
+                      advice: "认识自我限制，勇敢突破；在束缚中寻找内在的自由" },
+                    { number: 51, name: "宝剑九", upright: "焦虑、噩梦、恐惧", reversed: "恐惧面对、焦虑缓解、希望出现", 
+                      advice: "面对内心恐惧，寻求支持；在焦虑中寻找平静和解决方案" },
+                    { number: 52, name: "宝剑十", upright: "结束、痛苦、新开始", reversed: "延迟结束、持续痛苦、抗拒新开始", 
+                      advice: "接受痛苦的结束，期待新开始；在结束中寻找重生的希望" }
+                ],
+                pentacles: [
+                    { number: 53, name: "星币王牌", upright: "新机会、繁荣、物质收获", reversed: "错失机会、财务担忧、繁荣延迟", 
+                      advice: "抓住物质机会，务实规划；在繁荣中保持谨慎和感恩" },
+                    { number: 54, name: "星币二", upright: "平衡、适应、财务灵活", reversed: "不平衡、财务压力、适应困难", 
+                      advice: "保持财务平衡，灵活适应变化；在压力中寻找稳定方案" },
+                    { number: 55, name: "星币三", upright: "团队合作、技能发展、建设", reversed: "缺乏合作、技能不足、建设延迟", 
+                      advice: "重视团队合作，持续技能提升；在建设中注重质量和持久" },
+                    { number: 56, name: "星币四", upright: "保守、稳定、财富积累", reversed: "过度保守、吝啬、财富流失", 
+                      advice: "合理积累财富，但不要过度保守；在稳定中寻找适度冒险" },
+                    { number: 57, name: "星币五", upright: "财务困难、孤立、物质缺乏", reversed: "改善、支持出现、困难缓解", 
+                      advice: "面对财务挑战，寻求支持；在困难中保持希望和努力" },
+                    { number: 58, name: "星币六", upright: "慷慨、分享、平衡给予", reversed: "自私、不平衡给予、财务问题", 
+                      advice: "适度慷慨分享，保持平衡；在给予中感受丰盛和连接" },
+                    { number: 59, name: "星币七", upright: "收获、评估、耐心等待", reversed: "收获延迟、评估错误、缺乏耐心", 
+                      advice: "耐心等待收获，认真评估成果；在等待中继续努力耕耘" },
+                    { number: 60, name: "星币八", upright: "技能、专注、质量", reversed: "缺乏技能、分心、质量低下", 
+                      advice: "专注技能提升，注重工作质量；在专注中追求卓越" },
+                    { number: 61, name: "星币九", upright: "独立、享受、物质成功", reversed: "依赖、过度享受、成功虚幻", 
+                      advice: "享受独立成功，但保持谦逊；在物质成功中寻找精神满足" },
+                    { number: 62, name: "星币十", upright: "财富、家庭、传承", reversed: "财务问题、家庭冲突、传承困难", 
+                      advice: "珍惜家庭财富，合理规划传承；在丰盛中培养感恩和责任" }
+                ]
+            }
+        };
+
+        // 星座信息数据库
+        const zodiacInfo = {
+            aries: { element: "火", traits: "行动力、热情", tarotCard: "皇帝" },
+            taurus: { element: "土", traits: "稳定、务实", tarotCard: "教皇" },
+            gemini: { element: "风", traits: "沟通、变化", tarotCard: "恋人" },
+            cancer: { element: "水", traits: "情感、直觉", tarotCard: "战车" },
+            leo: { element: "火", traits: "创造力、自信", tarotCard: "力量" },
+            virgo: { element: "土", traits: "分析、服务", tarotCard: "隐士" },
+            libra: { element: "风", traits: "平衡、和谐", tarotCard: "正义" },
+            scorpio: { element: "水", traits: "深度、转化", tarotCard: "死神" },
+            sagittarius: { element: "火", traits: "自由、探索", tarotCard: "节制" },
+            capricorn: { element: "土", traits: "责任、成就", tarotCard: "恶魔" },
+            aquarius: { element: "风", traits: "创新、人道", tarotCard: "星星" },
+            pisces: { element: "水", traits: "直觉、灵性", tarotCard: "月亮" }
+        };
+
+        // 五行分析函数
+        function analyzeFiveElements(birthDate, birthTime) {
+            const year = birthDate.getFullYear();
+            const month = birthDate.getMonth() + 1;
+            const day = birthDate.getDate();
+            
+            // 简化版五行分析（基于年份尾数）
+            const yearEnd = year % 10;
+            let element = "";
+            
+            if ([0, 1].includes(yearEnd)) element = "金";
+            else if ([2, 3].includes(yearEnd)) element = "水";
+            else if ([4, 5].includes(yearEnd)) element = "木";
+            else if ([6, 7].includes(yearEnd)) element = "火";
+            else element = "土";
+            
+            return {
+                element: element,
+                analysis: `您的生辰五行倾向${element}元素，${element === "金" ? "具有决断力和原则性" : 
+                         element === "水" ? "富有流动性和适应性" : 
+                         element === "木" ? "具备成长性和创造力" : 
+                         element === "火" ? "充满热情和行动力" : "注重稳定和务实性"}`
+            };
+        }
+
+        // 星座日期验证函数
+        function getZodiacByDate(month, day) {
+            if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) return "aries";
+            if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) return "taurus";
+            if ((month === 5 && day >= 21) || (month === 6 && day <= 21)) return "gemini";
+            if ((month === 6 && day >= 22) || (month === 7 && day <= 22)) return "cancer";
+            if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) return "leo";
+            if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) return "virgo";
+            if ((month === 9 && day >= 23) || (month === 10 && day <= 23)) return "libra";
+            if ((month === 10 && day >= 24) || (month === 11 && day <= 22)) return "scorpio";
+            if ((month === 11 && day >= 23) || (month === 12 && day <= 21)) return "sagittarius";
+            if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) return "capricorn";
+            if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) return "aquarius";
+            return "pisces";
+        }
+
+        // 全局变量存储用户信息和抽牌结果
+        let userInfo = {};
+        let tarotReading = [];
+
+        // DOM加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+
+        function initializeApp() {
+            // 绑定表单提交事件
+            document.getElementById('userInfoForm').addEventListener('submit', handleFormSubmit);
+            
+            // 绑定出生日期变化事件，自动计算星座
+            document.getElementById('birthDate').addEventListener('change', updateZodiacFromDate);
+            
+            // 绑定塔罗牌点击事件
+            document.querySelectorAll('.tarot-card').forEach(card => {
+                card.addEventListener('click', handleCardClick);
+            });
+            
+            // 绑定按钮事件
+            document.getElementById('drawCardsBtn').addEventListener('click', handleTarotDraw);
+            document.getElementById('generateReportBtn').addEventListener('click', generateFortuneReport);
+            document.getElementById('restartBtn').addEventListener('click', restartApp);
+            
+            // 设置当前年份为出生日期选择的最大值
+            const currentYear = new Date().getFullYear();
+            document.getElementById('birthDate').max = `${currentYear}-12-31`;
+        }
+
+        // 处理表单提交
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            const birthTime = document.getElementById('birthTime').value;
+            const zodiac = document.getElementById('zodiac').value;
+            
+            // 获取用户选择的关注方面
+            const focusCheckboxes = document.querySelectorAll('input[name="focusAreas"]:checked');
+            const focusAreas = Array.from(focusCheckboxes).map(cb => cb.value);
+            
+            // 验证必填字段
+            if (!birthDate || !zodiac) {
+                alert('请填写完整的出生信息');
+                return;
+            }
+            
+            // 验证至少选择一个关注方面
+            if (focusAreas.length === 0) {
+                alert('请至少选择一个您关注的运势方面');
+                return;
+            }
+            
+            // 存储用户信息
+            userInfo = {
+                birthDate: birthDate,
+                birthTime: birthTime,
+                zodiac: zodiac,
+                fiveElements: analyzeFiveElements(birthDate, birthTime),
+                focusAreas: focusAreas
+            };
+            
+            // 切换到步骤2
+            switchStep(2);
+        }
+
+        // 根据出生日期自动更新星座
+        function updateZodiacFromDate() {
+            const birthDate = new Date(document.getElementById('birthDate').value);
+            if (isNaN(birthDate.getTime())) return;
+            
+            const month = birthDate.getMonth() + 1;
+            const day = birthDate.getDate();
+            const calculatedZodiac = getZodiacByDate(month, day);
+            
+            document.getElementById('zodiac').value = calculatedZodiac;
+            
+            // 显示星座提示
+            const zodiacNames = {
+                aries: '白羊座', taurus: '金牛座', gemini: '双子座', cancer: '巨蟹座',
+                leo: '狮子座', virgo: '处女座', libra: '天秤座', scorpio: '天蝎座',
+                sagittarius: '射手座', capricorn: '摩羯座', aquarius: '水瓶座', pisces: '双鱼座'
+            };
+            
+            document.getElementById('zodiacHint').textContent = 
+                `根据您的出生日期，系统计算您的星座为：${zodiacNames[calculatedZodiac]}`;
+        }
+
+        // 处理塔罗牌数字输入抽牌
+        function handleTarotDraw() {
+            // 获取用户输入的数字
+            const cardNumber1 = parseInt(document.getElementById('cardNumber1').value);
+            const cardNumber2 = parseInt(document.getElementById('cardNumber2').value);
+            const cardNumber3 = parseInt(document.getElementById('cardNumber3').value);
+            
+            // 验证输入
+            if (!validateCardNumbers(cardNumber1, cardNumber2, cardNumber3)) {
+                return;
+            }
+            
+            // 根据数字获取对应的塔罗牌
+            const card1 = getCardByNumber(cardNumber1);
+            const card2 = getCardByNumber(cardNumber2);
+            const card3 = getCardByNumber(cardNumber3);
+            
+            // 随机决定正逆位
+            const orientation1 = Math.random() > 0.5 ? 'upright' : 'reversed';
+            const orientation2 = Math.random() > 0.5 ? 'upright' : 'reversed';
+            const orientation3 = Math.random() > 0.5 ? 'upright' : 'reversed';
+            
+            // 存储抽牌结果
+            tarotReading = [
+                {
+                    ...card1,
+                    orientation: orientation1,
+                    position: '整体能量基调'
+                },
+                {
+                    ...card2,
+                    orientation: orientation2,
+                    position: '核心课题'
+                },
+                {
+                    ...card3,
+                    orientation: orientation3,
+                    position: '行动指引'
+                }
+            ];
+            
+            // 更新牌面显示
+            updateAllCardDisplays();
+            
+            // 启用生成报告按钮
+            document.getElementById('generateReportBtn').disabled = false;
+            
+            // 显示成功消息
+            alert('塔罗牌抽取成功！请查看牌面解读并生成运势报告。');
+        }
+        
+        // 验证输入的数字
+        function validateCardNumbers(num1, num2, num3) {
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3)) {
+                alert('请输入有效的数字（1-78）');
+                return false;
+            }
+            
+            if (num1 < 1 || num1 > 78 || num2 < 1 || num2 > 78 || num3 < 1 || num3 > 78) {
+                alert('请输入1-78之间的数字');
+                return false;
+            }
+            
+            // 检查是否有重复数字
+            const numbers = [num1, num2, num3];
+            const uniqueNumbers = [...new Set(numbers)];
+            if (uniqueNumbers.length !== numbers.length) {
+                alert('请确保输入的三个数字不重复');
+                return false;
+            }
+            
+            return true;
+        }
+        
+        // 根据数字获取对应的塔罗牌
+        function getCardByNumber(number) {
+            // 大阿卡那牌（1-22）
+            if (number >= 1 && number <= 22) {
+                return tarotDeck.majorArcana.find(card => card.number === number);
+            }
+            
+            // 小阿卡那牌（23-78）
+            const minorNumber = number - 22;
+            const suits = Object.keys(tarotDeck.minorArcana);
+            
+            for (const suit of suits) {
+                const cards = tarotDeck.minorArcana[suit];
+                const card = cards.find(c => c.number === number);
+                if (card) {
+                    return card;
+                }
+            }
+            
+            // 如果找不到对应的牌，返回默认牌
+            return tarotDeck.majorArcana[0];
+        }
+        
+        // 更新所有牌面显示
+        function updateAllCardDisplays() {
+            const cardElements = document.querySelectorAll('.tarot-card');
+            
+            cardElements.forEach((cardElement, index) => {
+                if (tarotReading[index]) {
+                    updateCardDisplay(cardElement, tarotReading[index]);
+                    cardElement.classList.add('flipped');
+                }
+            });
+        }
+        
+        // 处理塔罗牌点击（抽牌）
+        function handleCardClick(event) {
+            const cardElement = event.currentTarget;
+            const cardIndex = parseInt(cardElement.dataset.cardIndex);
+            
+            // 如果牌已经翻开，则不处理
+            if (cardElement.classList.contains('flipped')) return;
+            
+            // 抽牌逻辑
+            const card = drawTarotCard(cardIndex);
+            
+            // 更新牌面显示
+            updateCardDisplay(cardElement, card);
+            
+            // 翻转牌面
+            cardElement.classList.add('flipped');
+            
+            // 检查是否所有牌都已抽取
+            checkAllCardsDrawn();
+        }
+
+        // 抽牌函数
+        function drawTarotCard(cardIndex) {
+            const orientation = Math.random() > 0.5 ? 'upright' : 'reversed';
+            let card;
+            
+            // 根据牌的位置选择不同类型的牌
+            if (cardIndex === 0) {
+                // 第一张牌：大阿卡那牌（整体能量基调）
+                card = tarotDeck.majorArcana[Math.floor(Math.random() * tarotDeck.majorArcana.length)];
+            } else if (cardIndex === 1) {
+                // 第二张牌：根据星座元素选择小阿卡那牌（核心课题）
+                const element = zodiacInfo[userInfo.zodiac].element;
+                const suit = element === '火' ? 'wands' : 
+                           element === '水' ? 'cups' : 
+                           element === '风' ? 'swords' : 'pentacles';
+                card = tarotDeck.minorArcana[suit][Math.floor(Math.random() * tarotDeck.minorArcana[suit].length)];
+            } else {
+                // 第三张牌：随机小阿卡那牌（行动指引）
+                const suits = Object.keys(tarotDeck.minorArcana);
+                const randomSuit = suits[Math.floor(Math.random() * suits.length)];
+                card = tarotDeck.minorArcana[randomSuit][Math.floor(Math.random() * tarotDeck.minorArcana[randomSuit].length)];
+            }
+            
+            // 存储抽牌结果
+            tarotReading[cardIndex] = {
+                ...card,
+                orientation: orientation,
+                position: cardIndex === 0 ? '整体能量基调' : cardIndex === 1 ? '核心课题' : '行动指引'
+            };
+            
+            return tarotReading[cardIndex];
+        }
+
+        // 更新牌面显示
+        function updateCardDisplay(cardElement, card) {
+            const cardBack = cardElement.querySelector('.tarot-card-back');
+            
+            cardBack.innerHTML = `
+                <div class="tarot-card-name">${card.name}</div>
+                <div class="tarot-card-orientation">
+                    <i class="fas fa-${card.orientation === 'upright' ? 'arrow-up' : 'arrow-down'}"></i>
+                    ${card.orientation === 'upright' ? '正位' : '逆位'}
+                </div>
+                <div class="tarot-card-meaning">
+                    ${card.orientation === 'upright' ? card.upright : card.reversed}
+                </div>
+            `;
+            
+            cardBack.className = `tarot-card-back ${card.orientation}`;
+        }
+
+        // 检查是否所有牌都已抽取
+        function checkAllCardsDrawn() {
+            const allDrawn = tarotReading.length === 3 && tarotReading.every(card => card !== undefined);
+            document.getElementById('generateReportBtn').disabled = !allDrawn;
+        }
+
+        // 重置塔罗牌
+        function resetTarotCards() {
+            document.querySelectorAll('.tarot-card').forEach(card => {
+                card.classList.remove('flipped');
+            });
+            tarotReading = [];
+            document.getElementById('generateReportBtn').disabled = true;
+        }
+
+        // 生成运势报告
+        function generateFortuneReport() {
+            // 切换到步骤3
+            switchStep(3);
+            
+            // 生成运势报告内容
+            const report = createFortuneReport();
+            document.getElementById('fortuneReport').innerHTML = report;
+        }
+
+        // 创建运势报告
+        function createFortuneReport() {
+            const zodiacData = zodiacInfo[userInfo.zodiac];
+            
+            // 根据用户选择的关注方面生成对应的运势分析
+            const fortuneCategories = generateFortuneCategories(zodiacData, tarotReading);
+            
+            return `
+                <div class="user-summary" style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                    <h3><i class="fas fa-user"></i> 您的个人信息</h3>
+                    <p><strong>星座：</strong>${getZodiacChineseName(userInfo.zodiac)}（${zodiacData.element}元素）</p>
+                    <p><strong>五行分析：</strong>${userInfo.fiveElements.analysis}</p>
+                    <p><strong>塔罗牌对应：</strong>${zodiacData.tarotCard}牌</p>
+                    <p><strong>关注方面：</strong>${getFocusAreasDisplay(userInfo.focusAreas)}</p>
+                </div>
+                
+                <div class="tarot-summary" style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                    <h3><i class="fas fa-cards"></i> 塔罗牌详细解读</h3>
+                    ${tarotReading.map((card, index) => `
+                        <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 12px; border-left: 4px solid var(--primary-purple);">
+                            <h4 style="color: var(--primary-purple); margin-bottom: 1rem;">
+                                <i class="fas fa-${card.orientation === 'upright' ? 'arrow-up' : 'arrow-down'}"></i>
+                                ${card.position}：${card.name}（${card.orientation === 'upright' ? '正位' : '逆位'}）
+                            </h4>
+                            <div style="margin-bottom: 1rem;">
+                                <strong>核心含义：</strong>${card.orientation === 'upright' ? card.upright : card.reversed}
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <strong>详细解读：</strong>${generateDetailedCardInterpretation(card)}
+                            </div>
+                            <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px;">
+                                <strong>具体建议：</strong>${card.advice || generateCardAdvice(card)}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <div class="fortune-section">
+                    <h3><i class="fas fa-chart-pie"></i> 近期运势分析</h3>
+                    ${fortuneCategories}
+                </div>
+                
+                <div class="encouragement" style="text-align: center; margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%); color: white; border-radius: 12px;">
+                    <h3><i class="fas fa-star"></i> 心灵寄语</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">${generateEncouragement(tarotReading)}</p>
+                </div>
+            `;
+        }
+        
+        // 生成塔罗牌详细解读
+        function generateDetailedCardInterpretation(card) {
+            const interpretations = {
+                '愚人': {
+                    upright: '这张牌象征着新的开始、冒险精神和无限可能。您正站在人生的十字路口，前方充满未知但充满机遇。',
+                    reversed: '逆位的愚人提醒您需要更加谨慎，避免鲁莽行事。现在是时候重新评估您的计划和行动。'
+                },
+                '魔术师': {
+                    upright: '魔术师代表创造力、技能和资源的有效运用。您拥有将想法转化为现实的能力。',
+                    reversed: '逆位提示您可能没有充分利用自己的才能，或者沟通方面存在障碍。'
+                },
+                '女祭司': {
+                    upright: '女祭司象征着直觉、内在智慧和神秘知识。现在是倾听内心声音的好时机。',
+                    reversed: '逆位可能表示您忽视了直觉，或者需要更多时间来反思。'
+                }
+                // 这里可以继续添加其他牌的详细解读
+            };
+            
+            const defaultInterpretation = {
+                upright: `正位的${card.name}牌代表着${card.upright}。这张牌鼓励您发挥其积极能量。`,
+                reversed: `逆位的${card.name}牌提示您需要注意${card.reversed}。这是一个调整和反思的时期。`
+            };
+            
+            return interpretations[card.name] ? 
+                interpretations[card.name][card.orientation] : 
+                defaultInterpretation[card.orientation];
+        }
+        
+        // 生成塔罗牌具体建议
+        function generateCardAdvice(card) {
+            const adviceMap = {
+                '愚人': {
+                    upright: '勇敢尝试新事物，但要做好基本准备。保持开放心态，享受探索的过程。',
+                    reversed: '在行动前多思考，制定详细计划。寻求他人的建议和支持。'
+                },
+                '魔术师': {
+                    upright: '充分利用您的技能和资源，清晰表达您的想法。现在是展现才华的好时机。',
+                    reversed: '重新评估您的沟通方式，确保信息传达准确。不要害怕寻求帮助。'
+                },
+                '女祭司': {
+                    upright: '多花时间独处和冥想，倾听内心的声音。直觉会为您指引方向。',
+                    reversed: '平衡理性与直觉，不要忽视实际考量。记录您的梦境和灵感。'
+                }
+                // 这里可以继续添加其他牌的建议
+            };
+            
+            const defaultAdvice = {
+                upright: `基于${card.name}牌的正位能量，建议您${card.upright.toLowerCase()}，这将为您带来积极的变化。`,
+                reversed: `面对${card.name}牌的逆位，建议您${card.reversed.toLowerCase()}，通过调整来改善现状。`
+            };
+            
+            return adviceMap[card.name] ? 
+                adviceMap[card.name][card.orientation] : 
+                defaultAdvice[card.orientation];
+        }
+        
+        // 根据用户选择的关注方面生成对应的运势分类
+        function generateFortuneCategories(zodiacData, reading) {
+            const categoryConfigs = {
+                love: {
+                    icon: 'fa-heart',
+                    title: '爱情运势',
+                    analysis: generateLoveFortune(zodiacData, reading),
+                    suggestion: generateLoveSuggestion(zodiacData, reading),
+                    suggestionTitle: '温馨建议'
+                },
+                career: {
+                    icon: 'fa-briefcase',
+                    title: '事业运势',
+                    analysis: generateCareerFortune(zodiacData, reading),
+                    suggestion: generateCareerSuggestion(zodiacData, reading),
+                    suggestionTitle: '行动指引'
+                },
+                health: {
+                    icon: 'fa-heartbeat',
+                    title: '健康运势',
+                    analysis: generateHealthFortune(zodiacData, reading),
+                    suggestion: generateHealthSuggestion(zodiacData, reading),
+                    suggestionTitle: '养生提示'
+                },
+                wealth: {
+                    icon: 'fa-coins',
+                    title: '财运运势',
+                    analysis: generateWealthFortune(zodiacData, reading),
+                    suggestion: generateWealthSuggestion(zodiacData, reading),
+                    suggestionTitle: '理财建议'
+                },
+                study: {
+                    icon: 'fa-graduation-cap',
+                    title: '学业运势',
+                    analysis: generateStudyFortune(zodiacData, reading),
+                    suggestion: generateStudySuggestion(zodiacData, reading),
+                    suggestionTitle: '学习建议'
+                },
+                family: {
+                    icon: 'fa-home',
+                    title: '家庭运势',
+                    analysis: generateFamilyFortune(zodiacData, reading),
+                    suggestion: generateFamilySuggestion(zodiacData, reading),
+                    suggestionTitle: '家庭和谐'
+                }
+            };
+            
+            return userInfo.focusAreas.map(area => {
+                const config = categoryConfigs[area];
+                if (!config) return '';
+                
+                return `
+                    <div class="fortune-category">
+                        <h4><i class="fas ${config.icon}"></i> ${config.title}</h4>
+                        <div class="fortune-analysis">
+                            ${config.analysis}
+                        </div>
+                        <div class="fortune-suggestion">
+                            <strong>${config.suggestionTitle}：</strong>${config.suggestion}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // 获取关注方面的显示文本
+        function getFocusAreasDisplay(focusAreas) {
+            const areaNames = {
+                love: '爱情',
+                career: '事业',
+                health: '健康',
+                wealth: '财运',
+                study: '学业',
+                family: '家庭'
+            };
+            
+            return focusAreas.map(area => areaNames[area] || area).join('、');
+        }
+
+        // 辅助函数：获取星座中文名
+        function getZodiacChineseName(zodiac) {
+            const names = {
+                aries: '白羊座', taurus: '金牛座', gemini: '双子座', cancer: '巨蟹座',
+                leo: '狮子座', virgo: '处女座', libra: '天秤座', scorpio: '天蝎座',
+                sagittarius: '射手座', capricorn: '摩羯座', aquarius: '水瓶座', pisces: '双鱼座'
+            };
+            return names[zodiac] || zodiac;
+        }
+
+        // 增强版运势生成函数
+        function generateLoveFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `${zodiacData.element}元素的${getZodiacChineseName(userInfo.zodiac)}在情感方面`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期可能迎来和谐的发展期，${getCardLoveInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能会面临一些情感上的挑战，${getCardLoveInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardLoveInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardLoveInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotLoveAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在爱情方面的解读
+        function getCardLoveInterpretation(card) {
+            const loveInterpretations = {
+                '愚人': {
+                    overall: '爱情方面充满新的可能和冒险精神，适合尝试新的约会方式或认识新朋友。',
+                    theme: '保持开放心态，不要被过去的经验束缚。',
+                    action: '勇敢表达自己的感情，但要注意适度。'
+                },
+                '魔术师': {
+                    overall: '沟通能力增强，适合解决感情中的误会或表达真实想法。',
+                    theme: '运用智慧和技巧来处理感情问题。',
+                    action: '主动创造浪漫氛围，展现个人魅力。'
+                },
+                '女祭司': {
+                    overall: '需要更多直觉和内在感受来理解感情关系。',
+                    theme: '倾听内心的声音，不要忽视直觉。',
+                    action: '给彼此空间，让感情自然发展。'
+                },
+                '皇后': {
+                    overall: '情感丰富且充满滋养能量，适合建立深厚的情感连接。',
+                    theme: '展现温柔和关怀的一面。',
+                    action: '创造温馨的相处时光。'
+                },
+                '皇帝': {
+                    overall: '需要更多的稳定性和责任感来维护感情。',
+                    theme: '建立清晰的感情边界和规则。',
+                    action: '展现领导力和保护欲。'
+                }
+                // 可以继续添加其他牌的解读
+            };
+            
+            const defaultInterpretation = {
+                overall: `爱情运势${card.orientation === 'upright' ? '较为积极' : '需要谨慎'}。`,
+                theme: `${card.orientation === 'upright' ? '积极面对' : '注意'}${card.name}牌所代表的感情课题。`,
+                action: `${card.orientation === 'upright' ? '采取' : '调整'}${card.name}牌指引的行动。`
+            };
+            
+            return loveInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的爱情分析
+        function generateZodiacTarotLoveAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '作为火象星座，您的热情和行动力是感情发展的强大动力。';
+            } else if (element === '水') {
+                analysis += '水象星座的敏感和共情能力有助于深度理解伴侣的情感需求。';
+            } else if (element === '风') {
+                analysis += '风象星座的沟通能力和理性思维有助于建立清晰的感情关系。';
+            } else if (element === '土') {
+                analysis += '土象星座的稳定和务实为感情提供了坚实的基础。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极发挥' : '注意调整'}您的星座特质。`;
+            
+            return analysis;
+        }
+
+        function generateCareerFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `在事业方面，${zodiacData.traits}的您`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期工作运势较为顺畅，${getCardCareerInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能会遇到一些工作上的波折，${getCardCareerInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardCareerInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardCareerInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotCareerAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在事业方面的解读
+        function getCardCareerInterpretation(card) {
+            const careerInterpretations = {
+                '愚人': {
+                    overall: '事业方面充满新的机遇和可能性，适合尝试新的职业方向。',
+                    theme: '保持开放心态，勇于接受挑战。',
+                    action: '勇敢迈出第一步，探索未知领域。'
+                },
+                '魔术师': {
+                    overall: '创造力和执行力都很强，适合推进重要项目。',
+                    theme: '有效整合资源，发挥个人优势。',
+                    action: '清晰表达想法，展现专业能力。'
+                },
+                '女祭司': {
+                    overall: '需要更多直觉和内在智慧来指导职业发展。',
+                    theme: '倾听内心的职业召唤。',
+                    action: '给决策留出思考空间。'
+                },
+                '皇帝': {
+                    overall: '领导力和组织能力突出，适合承担管理职责。',
+                    theme: '建立清晰的工作规则和流程。',
+                    action: '展现权威和决策力。'
+                },
+                '战车': {
+                    overall: '行动力和竞争力都很强，适合开拓市场。',
+                    theme: '平衡不同方向的职业目标。',
+                    action: '积极进取，克服障碍。'
+                }
+            };
+            
+            const defaultInterpretation = {
+                overall: `事业运势${card.orientation === 'upright' ? '较为积极' : '需要谨慎'}。`,
+                theme: `${card.orientation === 'upright' ? '积极面对' : '注意'}${card.name}牌所代表的事业课题。`,
+                action: `${card.orientation === 'upright' ? '采取' : '调整'}${card.name}牌指引的行动。`
+            };
+            
+            return careerInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的事业分析
+        function generateZodiacTarotCareerAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '作为火象星座，您的行动力和热情是事业发展的强大动力。';
+            } else if (element === '水') {
+                analysis += '水象星座的直觉和共情能力有助于团队协作和客户关系。';
+            } else if (element === '风') {
+                analysis += '风象星座的沟通能力和创新思维是职业发展的优势。';
+            } else if (element === '土') {
+                analysis += '土象星座的务实和稳定性为职业发展提供了坚实基础。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极发挥' : '注意调整'}您的星座特质。`;
+            
+            return analysis;
+        }
+
+        function generateHealthFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `健康方面，${zodiacData.element}元素体质的您`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期身体状况总体良好，${getCardHealthInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能会感到一些疲惫，${getCardHealthInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardHealthInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardHealthInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotHealthAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在健康方面的解读
+        function getCardHealthInterpretation(card) {
+            const healthInterpretations = {
+                '愚人': {
+                    overall: '健康方面需要保持活力，但要注意安全。',
+                    theme: '尝试新的健康生活方式。',
+                    action: '适度运动，保持身心平衡。'
+                },
+                '魔术师': {
+                    overall: '身心状态良好，适合制定健康计划。',
+                    theme: '整合健康资源，发挥自我疗愈能力。',
+                    action: '主动管理健康，预防疾病。'
+                },
+                '女祭司': {
+                    overall: '需要关注内在健康信号和直觉。',
+                    theme: '倾听身体的需求和警告。',
+                    action: '给身心足够的休息和恢复时间。'
+                },
+                '节制': {
+                    overall: '健康状态需要平衡和调节。',
+                    theme: '找到工作和休息的平衡点。',
+                    action: '适度饮食，规律作息。'
+                },
+                '死神': {
+                    overall: '健康方面可能面临转变或调整。',
+                    theme: '接受身体的变化和自然规律。',
+                    action: '放下不良习惯，迎接新的健康状态。'
+                }
+            };
+            
+            const defaultInterpretation = {
+                overall: `健康状态${card.orientation === 'upright' ? '较为稳定' : '需要关注'}。`,
+                theme: `${card.orientation === 'upright' ? '积极维护' : '注意'}${card.name}牌所代表的健康课题。`,
+                action: `${card.orientation === 'upright' ? '坚持' : '调整'}${card.name}牌指引的健康行动。`
+            };
+            
+            return healthInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的健康分析
+        function generateZodiacTarotHealthAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '火象星座的您需要注意控制情绪波动对健康的影响。';
+            } else if (element === '水') {
+                analysis += '水象星座的您需要关注情绪健康对身体的反射。';
+            } else if (element === '风') {
+                analysis += '风象星座的您需要注意神经系统和呼吸系统的健康。';
+            } else if (element === '土') {
+                analysis += '土象星座的您需要关注消化系统和骨骼健康。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极维护' : '谨慎对待'}您的健康状态。`;
+            
+            return analysis;
+        }
+
+        function generateWealthFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `财运方面，${getZodiacChineseName(userInfo.zodiac)}的您`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期财务运势相对稳定，${getCardWealthInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能需要谨慎管理财务，${getCardWealthInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardWealthInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardWealthInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotWealthAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在财运方面的解读
+        function getCardWealthInterpretation(card) {
+            const wealthInterpretations = {
+                '愚人': {
+                    overall: '财运方面充满新的机遇，但需要谨慎评估风险。',
+                    theme: '尝试新的投资或收入来源。',
+                    action: '勇敢探索财务机会，但保持理性。'
+                },
+                '魔术师': {
+                    overall: '财务创造力很强，适合制定理财计划。',
+                    theme: '有效整合财务资源。',
+                    action: '主动管理资金，发挥财务智慧。'
+                },
+                '女祭司': {
+                    overall: '需要更多直觉来指导财务决策。',
+                    theme: '倾听内在的财务直觉。',
+                    action: '给财务决策留出思考空间。'
+                },
+                '皇帝': {
+                    overall: '财务控制力强，适合建立财务体系。',
+                    theme: '建立清晰的财务规则。',
+                    action: '展现财务决策力，控制支出。'
+                },
+                '星币骑士': {
+                    overall: '财务稳定增长，适合长期投资。',
+                    theme: '坚持务实的财务策略。',
+                    action: '稳步推进财务计划。'
+                }
+            };
+            
+            const defaultInterpretation = {
+                overall: `财运${card.orientation === 'upright' ? '较为积极' : '需要谨慎'}。`,
+                theme: `${card.orientation === 'upright' ? '积极面对' : '注意'}${card.name}牌所代表的财务课题。`,
+                action: `${card.orientation === 'upright' ? '采取' : '调整'}${card.name}牌指引的财务行动。`
+            };
+            
+            return wealthInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的财运分析
+        function generateZodiacTarotWealthAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '火象星座的您适合主动开拓财源，但要注意控制冲动消费。';
+            } else if (element === '水') {
+                analysis += '水象星座的您适合通过人际关系和情感价值创造财富。';
+            } else if (element === '风') {
+                analysis += '风象星座的您适合通过信息交流和知识变现获得收入。';
+            } else if (element === '土') {
+                analysis += '土象星座的您适合通过稳定工作和长期投资积累财富。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极把握' : '谨慎对待'}您的财务机会。`;
+            
+            return analysis;
+        }
+
+        // 生成建议函数
+        function generateLoveSuggestion(zodiacData, reading) {
+            const actionCard = reading[2];
+            return `不妨多表达真实情感，${actionCard.orientation === 'upright' ? actionCard.upright : '保持开放沟通'}，让关系自然发展。`;
+        }
+
+        function generateCareerSuggestion(zodiacData, reading) {
+            const actionCard = reading[2];
+            return `尝试${actionCard.orientation === 'upright' ? actionCard.upright.toLowerCase() : '新的工作方式'}，可能会带来意想不到的收获。`;
+        }
+
+        function generateHealthSuggestion(zodiacData, reading) {
+            return `保持${zodiacData.element === '火' ? '适度运动' : zodiacData.element === '水' ? '充足睡眠' : zodiacData.element === '风' ? '深呼吸练习' : '规律饮食'}对您特别有益。`;
+        }
+
+        function generateWealthSuggestion(zodiacData, reading) {
+            const actionCard = reading[2];
+            return `考虑${actionCard.orientation === 'upright' ? '多元化投资' : '保守理财'}策略，${userInfo.fiveElements.element === '金' ? '注重长期规划' : '保持资金流动性'}。`;
+        }
+
+        // 学业运势生成函数
+        function generateStudyFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `在学业方面，${zodiacData.traits}的您`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期学习状态较为理想，${getCardStudyInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能会遇到一些学习上的困难，${getCardStudyInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardStudyInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardStudyInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotStudyAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在学业方面的解读
+        function getCardStudyInterpretation(card) {
+            const studyInterpretations = {
+                '愚人': {
+                    overall: '学业方面充满新的学习机会，适合探索新领域。',
+                    theme: '保持开放的学习心态。',
+                    action: '勇敢尝试新的学习方法。'
+                },
+                '魔术师': {
+                    overall: '学习创造力和理解力都很强，适合深入学习。',
+                    theme: '有效整合学习资源。',
+                    action: '清晰表达学习成果。'
+                },
+                '女祭司': {
+                    overall: '需要更多直觉和内在智慧来指导学习。',
+                    theme: '倾听内在的学习需求。',
+                    action: '给学习留出思考空间。'
+                },
+                '皇帝': {
+                    overall: '学习自律性很强，适合建立学习体系。',
+                    theme: '建立清晰的学习计划。',
+                    action: '展现学习决策力。'
+                },
+                '隐士': {
+                    overall: '适合深度学习和独立思考。',
+                    theme: '寻找内在的学习智慧。',
+                    action: '给学习留出独处时间。'
+                }
+            };
+            
+            const defaultInterpretation = {
+                overall: `学业运势${card.orientation === 'upright' ? '较为积极' : '需要调整'}。`,
+                theme: `${card.orientation === 'upright' ? '积极面对' : '注意'}${card.name}牌所代表的学业课题。`,
+                action: `${card.orientation === 'upright' ? '采取' : '调整'}${card.name}牌指引的学习行动。`
+            };
+            
+            return studyInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的学业分析
+        function generateZodiacTarotStudyAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '火象星座的您适合通过实践和行动来学习。';
+            } else if (element === '水') {
+                analysis += '水象星座的您适合通过情感和直觉来理解知识。';
+            } else if (element === '风') {
+                analysis += '风象星座的您适合通过交流和讨论来深化学习。';
+            } else if (element === '土') {
+                analysis += '土象星座的您适合通过系统和结构来掌握知识。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极发挥' : '注意调整'}您的学习方式。`;
+            
+            return analysis;
+        }
+
+        function generateStudySuggestion(zodiacData, reading) {
+            const actionCard = reading[2];
+            return `尝试${actionCard.orientation === 'upright' ? '新的学习方法' : '调整学习节奏'}，${zodiacData.element === '火' ? '保持学习热情' : zodiacData.element === '水' ? '注重理解深度' : zodiacData.element === '风' ? '加强逻辑思维' : '建立系统知识'}对您特别有益。`;
+        }
+
+        // 家庭运势生成函数
+        function generateFamilyFortune(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let analysis = `家庭方面，${getZodiacChineseName(userInfo.zodiac)}的您`;
+            
+            // 整体能量基调分析
+            if (overallCard.orientation === 'upright') {
+                analysis += `近期家庭氛围较为和谐，${getCardFamilyInterpretation(overallCard).overall} `;
+            } else {
+                analysis += `可能需要关注家庭关系的平衡，${getCardFamilyInterpretation(overallCard).overall} `;
+            }
+            
+            // 核心课题分析
+            analysis += `${getCardFamilyInterpretation(themeCard).theme} `;
+            
+            // 行动指引分析
+            analysis += `${getCardFamilyInterpretation(actionCard).action} `;
+            
+            // 星座与塔罗牌结合分析
+            analysis += generateZodiacTarotFamilyAnalysis(zodiacData, reading);
+            
+            return analysis;
+        }
+        
+        // 获取塔罗牌在家庭方面的解读
+        function getCardFamilyInterpretation(card) {
+            const familyInterpretations = {
+                '愚人': {
+                    overall: '家庭关系充满新的可能性，适合尝试新的相处方式。',
+                    theme: '保持开放的家庭沟通。',
+                    action: '勇敢表达家庭情感。'
+                },
+                '魔术师': {
+                    overall: '家庭创造力很强，适合营造和谐家庭氛围。',
+                    theme: '有效整合家庭资源。',
+                    action: '主动改善家庭关系。'
+                },
+                '女祭司': {
+                    overall: '需要更多直觉来理解家庭关系。',
+                    theme: '倾听家人的需求和感受。',
+                    action: '给家庭关系留出思考空间。'
+                },
+                '皇帝': {
+                    overall: '家庭责任感很强，适合建立家庭规则。',
+                    theme: '建立清晰的家庭角色。',
+                    action: '展现家庭领导力。'
+                },
+                '恋人': {
+                    overall: '家庭关系需要更多情感连接。',
+                    theme: '加强家庭成员间的理解。',
+                    action: '创造家庭亲密时刻。'
+                }
+            };
+            
+            const defaultInterpretation = {
+                overall: `家庭关系${card.orientation === 'upright' ? '较为和谐' : '需要关注'}。`,
+                theme: `${card.orientation === 'upright' ? '积极维护' : '注意'}${card.name}牌所代表的家庭课题。`,
+                action: `${card.orientation === 'upright' ? '采取' : '调整'}${card.name}牌指引的家庭行动。`
+            };
+            
+            return familyInterpretations[card.name] || defaultInterpretation;
+        }
+        
+        // 生成星座与塔罗牌结合的家庭分析
+        function generateZodiacTarotFamilyAnalysis(zodiacData, reading) {
+            const element = zodiacData.element;
+            const overallCard = reading[0];
+            
+            let analysis = '';
+            
+            if (element === '火') {
+                analysis += '火象星座的您适合通过热情和行动来维护家庭关系。';
+            } else if (element === '水') {
+                analysis += '水象星座的您适合通过情感和共情来理解家人。';
+            } else if (element === '风') {
+                analysis += '风象星座的您适合通过沟通和交流来改善家庭氛围。';
+            } else if (element === '土') {
+                analysis += '土象星座的您适合通过稳定和务实来支持家庭。';
+            }
+            
+            analysis += `结合${overallCard.name}牌的能量，${overallCard.orientation === 'upright' ? '积极营造' : '注意调整'}您的家庭氛围。`;
+            
+            return analysis;
+        }
+
+        function generateFamilySuggestion(zodiacData, reading) {
+            const overallCard = reading[0];
+            const themeCard = reading[1];
+            const actionCard = reading[2];
+            
+            let suggestion = `家庭建议：基于${overallCard.name}牌的整体能量，`;
+            
+            // 根据整体牌给出基础建议
+            if (overallCard.orientation === 'upright') {
+                suggestion += '积极营造家庭和谐氛围。';
+            } else {
+                suggestion += '注意调整家庭关系中的不平衡。';
+            }
+            
+            // 根据主题牌给出具体建议
+            suggestion += ` ${getCardFamilyAdvice(themeCard)} `;
+            
+            // 根据行动牌给出行动建议
+            suggestion += `行动上，${getCardFamilyAdvice(actionCard)}`;
+            
+            // 星座特色建议
+            suggestion += generateZodiacFamilyAdvice(zodiacData);
+            
+            return suggestion;
+        }
+        
+        // 获取塔罗牌在家庭方面的具体建议
+        function getCardFamilyAdvice(card) {
+            const familyAdvice = {
+                '愚人': `保持开放心态，${card.orientation === 'upright' ? '勇敢尝试新的家庭互动方式' : '避免家庭决策过于冲动'}。`,
+                '魔术师': `发挥创造力，${card.orientation === 'upright' ? '主动改善家庭关系' : '注意家庭沟通的有效性'}。`,
+                '女祭司': `倾听内心，${card.orientation === 'upright' ? '直觉理解家人需求' : '避免家庭情感过于内敛'}。`,
+                '皇帝': `承担责任，${card.orientation === 'upright' ? '建立家庭秩序' : '避免家庭控制欲过强'}。`,
+                '恋人': `加强连接，${card.orientation === 'upright' ? '深化家庭情感纽带' : '注意家庭关系中的选择'}。`,
+                '战车': `主动行动，${card.orientation === 'upright' ? '推动家庭事务进展' : '避免家庭冲突升级'}。`,
+                '力量': `温和处理，${card.orientation === 'upright' ? '用耐心化解家庭矛盾' : '注意家庭情绪管理'}。`,
+                '隐士': `静心思考，${card.orientation === 'upright' ? '给家庭关系留出空间' : '避免家庭沟通过于封闭'}。`,
+                '命运之轮': `顺应变化，${card.orientation === 'upright' ? '接受家庭生活的自然流转' : '在家庭变动中保持稳定'}。`,
+                '正义': `公平对待，${card.orientation === 'upright' ? '平衡家庭成员关系' : '注意家庭决策的公正性'}。`
+            };
+            
+            return familyAdvice[card.name] || `${card.orientation === 'upright' ? '积极' : '谨慎'}处理${card.name}牌所代表的家庭课题。`;
+        }
+        
+        // 生成星座特色的家庭建议
+        function generateZodiacFamilyAdvice(zodiacData) {
+            const element = zodiacData.element;
+            
+            switch(element) {
+                case '火':
+                    return '火象星座的您，建议通过热情活动增进家庭感情。';
+                case '水':
+                    return '水象星座的您，建议通过情感交流深化家庭连接。';
+                case '风':
+                    return '风象星座的您，建议通过家庭会议改善沟通。';
+                case '土':
+                    return '土象星座的您，建议通过实际行动支持家人。';
+                default:
+                    return '建议根据您的星座特点调整家庭相处方式。';
+            }
+        }
+
+        // 生成鼓励话语
+        function generateEncouragement(reading) {
+            const overallCard = reading[0];
+            
+            if (overallCard.orientation === 'upright') {
+                return `保持当下的积极能量，${overallCard.name}牌的光芒正照耀着您的道路。每一次选择都是成长的契机，愿您信任内在的智慧，勇敢前行。`;
+            } else {
+                return `${overallCard.name}牌的逆位提醒是暂时的调整期，这正是您积蓄力量的时刻。请相信，每一次挑战都蕴含着转机，您的坚韧终将迎来曙光。`;
+            }
+        }
+
+        // 步骤切换函数
+        function switchStep(stepNumber) {
+            // 更新步骤指示器
+            document.querySelectorAll('.step').forEach((step, index) => {
+                if (index + 1 < stepNumber) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (index + 1 === stepNumber) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+            
+            // 显示对应步骤内容
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`step${stepNumber}`).classList.add('active');
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 重新开始应用
+        function restartApp() {
+            // 重置表单
+            document.getElementById('userInfoForm').reset();
+            document.getElementById('zodiacHint').textContent = '';
+            
+            // 重置塔罗牌
+            resetTarotCards();
+            
+            // 清空存储的数据
+            userInfo = {};
+            tarotReading = [];
+            
+            // 回到第一步
+            switchStep(1);
+        }
+
+        // 添加响应式设计支持
+        window.addEventListener('resize', function() {
+            // 可以在这里添加响应式布局的调整逻辑
+        });
+    </script>
+</body>
+</html>
