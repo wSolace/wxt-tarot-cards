@@ -1,0 +1,1 @@
+# wxt-tarot-cards
